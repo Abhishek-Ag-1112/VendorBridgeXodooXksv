@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useData } from '../context/DataContext';
-import { Send, Bot, X, Sparkles, AlertCircle } from 'lucide-react';
+import { Send, Bot, X, Sparkles } from 'lucide-react';
 
 interface Message {
   role: 'user' | 'assistant';
