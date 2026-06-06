@@ -1,0 +1,4 @@
+name,contactName,email,phone,gstNumber,panNumber,category,status
+Test Supplier 1,John Doe,john@test.com,9876543210,27ABCDE1234F1Z2,ABCDE1234F,Electrical;Logistics,active
+Invalid Supplier,Jane Doe,jane-email,12345,123,456,InvalidCategory,inactive
+Test Supplier 2,Bob Smith,bob@test.com,9876543211,27BCDEF1234G1Z3,BCDEF1234G,Raw Materials,active
