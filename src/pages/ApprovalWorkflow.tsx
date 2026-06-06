@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useData, ApprovalWorkflow, PurchaseOrder } from '../context/DataContext';
+import { useData, ApprovalWorkflow } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
 import { 
   ShieldCheck, 
@@ -8,9 +8,7 @@ import {
   XCircle, 
   MessageSquare, 
   AlertCircle,
-  FileText,
   User,
-  Send,
   MailWarning
 } from 'lucide-react';
 

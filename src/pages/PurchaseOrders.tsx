@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useData, PurchaseOrder, Invoice } from '../context/DataContext';
+import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
 import { 
   Receipt, 
@@ -9,17 +9,15 @@ import {
   Mail, 
   CreditCard, 
   ChevronRight, 
-  CheckCircle,
   Building,
-  MapPin,
-  Clock,
-  ArrowLeft,
-  DollarSign
+  ArrowLeft
 } from 'lucide-react';
 
 export const PurchaseOrders: React.FC = () => {
   const { purchaseOrders, invoices, payInvoice, vendors } = useData();
   const { user } = useAuth();
+
+  if (!user) return null;
 
   const [selectedPOId, setSelectedPOId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'po' | 'invoice'>('po');
@@ -50,9 +48,10 @@ export const PurchaseOrders: React.FC = () => {
 
   // Dynamic QR Code generation hook using qrcode.js
   useEffect(() => {
+    let timer: NodeJS.Timeout | undefined;
     if (activeTab === 'invoice' && activeInvoice && activePO) {
       // Small timeout to ensure DOM element is mounted and rendered
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         const container = document.getElementById('invoice-qrcode-container');
         if (container) {
           container.innerHTML = ''; // Clear previous canvas
@@ -81,9 +80,10 @@ export const PurchaseOrders: React.FC = () => {
           }
         }
       }, 50);
-
-      return () => clearTimeout(timer);
     }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [activeTab, activeInvoice, activePO, vendors]);
 
   // PDF Download Action using html2pdf.js
@@ -99,7 +99,7 @@ export const PurchaseOrders: React.FC = () => {
       image:        { type: 'jpeg', quality: 0.98 },
       html2canvas:  { scale: 2, useCORS: true },
       jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    } as any;
 
     // Safely load html2pdf.js dynamically to prevent SSR/TypeScript build warnings
     import('html2pdf.js').then((html2pdfLib) => {

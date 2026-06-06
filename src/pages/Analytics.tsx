@@ -11,18 +11,16 @@ import {
   Legend
 } from 'recharts';
 import { 
-  BarChart3, 
   Download, 
   Calendar, 
   TrendingUp, 
   IndianRupee, 
-  FileSpreadsheet,
   Users,
   CheckCircle
 } from 'lucide-react';
 
 export const Analytics: React.FC = () => {
-  const { purchaseOrders, vendors, rfqs } = useData();
+  const { purchaseOrders, vendors } = useData();
 
   // Date filters
   const [startDate, setStartDate] = useState('2026-01-01');

@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useSearchParams, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useData, RFQ, Quotation } from '../context/DataContext';
 import { 
-  ArrowLeft, 
   Scale, 
   Star, 
   Clock, 
   Check, 
   ShieldCheck, 
-  FileText,
   AlertTriangle,
-  IndianRupee,
-  ChevronRight,
-  TrendingUp,
   Sparkles,
   Send,
   X,
@@ -84,7 +79,7 @@ export const QuotationCompare: React.FC = () => {
     if (!rfq) return;
     setIsSubmitting(true);
     try {
-      const poId = await createPOFromQuotation(rfq.id, quoteId);
+      await createPOFromQuotation(rfq.id, quoteId);
       setSuccessMsg('Purchase Order generated successfully. Routing for Manager approval!');
       setTimeout(() => {
         setIsSubmitting(false);

@@ -35,7 +35,6 @@ export const RfqCreate: React.FC = () => {
   const [lineItems, setLineItems] = useState<Omit<LineItem, 'id'>[]>([
     { name: '', qty: 1, description: '' }
   ]);
-  const [attachments, setAttachments] = useState<string[]>([]);
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState(false);
 
@@ -248,7 +247,9 @@ export const RfqCreate: React.FC = () => {
     'comparison': 'bg-warning-light text-warning border-warning/20',
     'approved': 'bg-success-light text-success border-success/20',
     'rejected': 'bg-danger-light text-danger border-danger/20',
-    'po_created': 'bg-emerald-50 text-emerald-700 border-emerald-200'
+    'po_created': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    'under_review': 'bg-indigo-50 text-indigo-700 border-indigo-200',
+    'invoiced': 'bg-teal-50 text-teal-700 border-teal-200'
   };
 
   const statusLabels: Record<RFQ['status'], string> = {
@@ -257,7 +258,9 @@ export const RfqCreate: React.FC = () => {
     'comparison': 'Quotation Comparison',
     'approved': 'Approved',
     'rejected': 'Rejected',
-    'po_created': 'PO Issued'
+    'po_created': 'PO Issued',
+    'under_review': 'Under Review',
+    'invoiced': 'Invoiced'
   };
 
   return (

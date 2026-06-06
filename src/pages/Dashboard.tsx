@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useData, RFQ, PurchaseOrder, ActivityLog } from '../context/DataContext';
+import { useData } from '../context/DataContext';
 import { 
   FileText, 
   Users, 
@@ -12,8 +12,7 @@ import {
   CheckCircle, 
   Send, 
   AlertTriangle,
-  ArrowRight,
-  TrendingDown
+  ArrowRight
 } from 'lucide-react';
 import { 
   ResponsiveContainer, 
@@ -25,8 +24,7 @@ import {
 
 export const Dashboard: React.FC = () => {
   const { user } = useAuth();
-  const { rfqs, purchaseOrders, approvalWorkflows, activityLogs, vendors } = useData();
-  const navigate = useNavigate();
+  const { rfqs, purchaseOrders, activityLogs, vendors } = useData();
 
   if (!user) return null;
 

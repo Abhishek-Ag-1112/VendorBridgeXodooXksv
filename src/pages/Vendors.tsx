@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useData, Vendor } from '../context/DataContext';
-import { useAuth } from '../context/AuthContext';
 import { 
   Search, 
   Plus, 
   Edit2, 
-  Trash2, 
   Check, 
   X, 
   Star, 
@@ -32,7 +30,6 @@ interface ParsedVendorRow {
 
 export const Vendors: React.FC = () => {
   const { vendors, addVendor, bulkAddVendors, updateVendor } = useData();
-  const { user } = useAuth();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
