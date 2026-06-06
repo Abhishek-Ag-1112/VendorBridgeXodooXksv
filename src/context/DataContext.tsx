@@ -370,6 +370,18 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     let cleanup = () => {};
     if (isFirebaseActive && db) {
+      if (!user) {
+        setVendors([]);
+        setRfqs([]);
+        setQuotations([]);
+        setApprovalWorkflows([]);
+        setPurchaseOrders([]);
+        setInvoices([]);
+        setActivityLogs([]);
+        setLoading(false);
+        return;
+      }
+
       // Setup Firebase real-time listeners
       const unsubVendors = onSnapshot(collection(db, 'vendors'), (snap) => {
         const list: Vendor[] = [];
@@ -483,7 +495,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setLoading(false);
     }
     return cleanup;
-  }, []);
+  }, [user]);
 
   // Firestore seeder helper
   const seedFirestore = async () => {
