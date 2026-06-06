@@ -6,7 +6,6 @@ import {
   getDocs, 
   doc, 
   setDoc, 
-  addDoc, 
   updateDoc, 
   onSnapshot,
   query,
@@ -369,6 +368,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Syncing state loader
   useEffect(() => {
+    let cleanup = () => {};
     if (isFirebaseActive && db) {
       // Setup Firebase real-time listeners
       const unsubVendors = onSnapshot(collection(db, 'vendors'), (snap) => {
@@ -435,7 +435,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setLoading(false);
       });
 
-      return () => {
+      cleanup = () => {
         unsubVendors();
         unsubRfqs();
         unsubQuotes();
@@ -482,6 +482,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       setLoading(false);
     }
+    return cleanup;
   }, []);
 
   // Firestore seeder helper
@@ -674,7 +675,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
     let newSteps: ApprovalStep[] = [];
     
     if (isFirebaseActive && db) {
-      const docRef = doc(db, 'approvalWorkflows', workflowId);
       const snap = await getDocs(query(collection(db, 'approvalWorkflows'), where('id', '==', workflowId)));
       
       snap.forEach(d => {

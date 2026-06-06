@@ -45,6 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Initialize Auth state
   useEffect(() => {
+    let cleanup = () => {};
     if (isFirebaseActive && auth) {
       const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
         if (firebaseUser) {
@@ -82,7 +83,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
         setLoading(false);
       });
-      return unsubscribe;
+      cleanup = () => unsubscribe();
     } else {
       // LocalStorage Auth initialization
       const cached = localStorage.getItem('vendorbridge_current_user');
@@ -95,6 +96,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
       setLoading(false);
     }
+    return cleanup;
   }, []);
 
   // Login handler
