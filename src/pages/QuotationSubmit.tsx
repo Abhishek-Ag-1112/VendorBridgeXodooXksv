@@ -68,7 +68,7 @@ export const QuotationSubmit: React.FC = () => {
         <AlertCircle className="h-10 w-10 mx-auto text-danger mb-3" />
         <h3 className="text-base font-bold text-danger">Access Denied</h3>
         <p className="text-xs text-slate-500 mt-1">Only active Vendor Accounts are permitted to submit commercial bidding quotes.</p>
-        <Link to="/" className="mt-4 inline-block text-xs font-bold text-primary hover:underline">Return to Dashboard</Link>
+        <Link to="/dashboard" className="mt-4 inline-block text-xs font-bold text-primary hover:underline">Return to Dashboard</Link>
       </div>
     );
   }

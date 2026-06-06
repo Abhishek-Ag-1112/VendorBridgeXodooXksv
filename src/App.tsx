@@ -6,6 +6,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { Layout } from './components/Layout';
 
 // Pages
+import { Landing } from './pages/Landing';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { Vendors } from './pages/Vendors';
@@ -24,12 +25,15 @@ export const App: React.FC = () => {
       <AuthProvider>
         <DataProvider>
           <Routes>
+            {/* Public Landing Page */}
+            <Route path="/" element={<Landing />} />
+
             {/* Public Login Page */}
             <Route path="/login" element={<Login />} />
 
             {/* Protected ERP Application Routes */}
             <Route 
-              path="/" 
+              path="/dashboard" 
               element={
                 <ProtectedRoute>
                   <Layout>

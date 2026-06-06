@@ -50,7 +50,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   // Define sidebar items and their allowed roles
   const navItems = [
     { 
-      path: '/', 
+      path: '/dashboard', 
       label: 'Dashboard', 
       icon: LayoutDashboard, 
       roles: ['Admin', 'Procurement Officer', 'Manager/Approver', 'Vendor'] 

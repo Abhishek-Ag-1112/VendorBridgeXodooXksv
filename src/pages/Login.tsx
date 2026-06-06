@@ -53,10 +53,10 @@ export const Login: React.FC = () => {
     try {
       if (isLogin) {
         await login(email, role);
-        navigate('/');
+        navigate('/dashboard');
       } else {
         await signup(email, name, role, role === 'Vendor' ? vendorId : undefined);
-        navigate('/');
+        navigate('/dashboard');
       }
     } catch (err: any) {
       setError(err.message || 'Authentication failed. Please verify credentials.');
