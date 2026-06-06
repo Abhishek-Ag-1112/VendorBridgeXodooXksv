@@ -30,7 +30,7 @@ export const Dashboard: React.FC = () => {
 
   // Filter entities according to user role
   const isVendor = user.role === 'Vendor';
-  const vendorId = user.associatedVendorId;
+  const vendorId = user.associatedVendorId || 'vendor-1';
 
   const userRfqs = isVendor
     ? rfqs.filter((r) => r.assignedVendorIds.includes(vendorId || ''))

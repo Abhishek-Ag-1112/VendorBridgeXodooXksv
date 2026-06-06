@@ -45,8 +45,9 @@ export const QuotationSubmit: React.FC = () => {
         setPrices(initialPrices);
 
         // Check if vendor has already submitted a quote for this RFQ
-        if (user?.associatedVendorId) {
-          const existing = quotations.find(q => q.rfqId === rfqId && q.vendorId === user.associatedVendorId);
+        const vId = user?.associatedVendorId || 'vendor-1';
+        if (vId) {
+          const existing = quotations.find(q => q.rfqId === rfqId && q.vendorId === vId);
           if (existing) {
             // Pre-populate with existing bid for editing
             const editPrices: Record<string, number> = {};

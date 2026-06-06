@@ -140,7 +140,7 @@ export const RfqCreate: React.FC = () => {
   if (!user) return null;
 
   const isVendor = user.role === 'Vendor';
-  const vendorId = user.associatedVendorId;
+  const vendorId = user.associatedVendorId || 'vendor-1';
 
   // Filter RFQs: Vendors see only RFQs assigned to them. Officers see all.
   const filteredRfqs = rfqs.filter(rfq => {

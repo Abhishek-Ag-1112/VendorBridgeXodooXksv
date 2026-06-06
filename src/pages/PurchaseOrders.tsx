@@ -24,7 +24,7 @@ export const PurchaseOrders: React.FC = () => {
 
   // Filter based on roles
   const isVendor = user?.role === 'Vendor';
-  const vendorId = user?.associatedVendorId;
+  const vendorId = user?.associatedVendorId || 'vendor-1';
 
   const filteredPOs = isVendor
     ? purchaseOrders.filter(p => p.vendorId === vendorId)
